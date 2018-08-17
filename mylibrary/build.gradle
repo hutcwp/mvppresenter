@@ -4,12 +4,16 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion = 28
-    buildToolsVersion = '28.0.1'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+    }
 }
 
 // This is the library version used when deploying the artifact
-version = "1.0.1"//这里是你的版本，当你需要上传新的版本到bintry上时，只需要修改这里的版本即可
+version = "1.0.2"//这里是你的版本，当你需要上传新的版本到bintry上时，只需要修改这里的版本即可
 
 def siteUrl = 'https://git.oschina.net/crazycodeboy/ScanProj'      // 项目的主页
 def gitUrl = 'https://git.oschina.net/crazycodeboy/ScanProj.git'   // Git仓库的url
@@ -71,7 +75,7 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        userOrg ="hut"//这个地方一定要填，一定要填 ！！（这里需要修改你申请账号是的组织id）
+        userOrg = "hut"//这个地方一定要填，一定要填 ！！（这里需要修改你申请账号是的组织id）
         repo = "Maven"//发布到bintray上的仓库名
         name = "MvpPresenter"  //发布到bintray上的包名
         websiteUrl = siteUrl
@@ -81,8 +85,51 @@ bintray {
     }
 }
 javadoc { //jav doc采用utf-8编码否则会报“GBK的不可映射字符”错误
-    options{
+    options {
         encoding "UTF-8"
         charSet 'UTF-8'
+    }
+}
+
+def rxjava_version = '2.1.11'
+def rxandroid_version = '2.0.1'
+def rxlifecycle_version = '2.0.1'
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    implementation("io.reactivex.rxjava2:rxjava:${rxjava_version}") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+    implementation("io.reactivex.rxjava2:rxandroid:${rxandroid_version}") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    }
+    implementation("com.trello.rxlifecycle2:rxlifecycle:${rxlifecycle_version}") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    }
+    implementation("com.trello.rxlifecycle2:rxlifecycle-android:${rxlifecycle_version}") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.trello.rxlifecycle2', module: 'rxlifecycle'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
+    }
+    implementation("com.trello.rxlifecycle2:rxlifecycle-components:${rxlifecycle_version}") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
+    }
+    implementation('com.jakewharton.rxrelay2:rxrelay:2.0.0') {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
 }
