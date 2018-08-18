@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "hut.cwp.mvppresenter"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -62,4 +62,6 @@ dependencies {
     }
     implementation project(path: ':mylibrary')
     compile project(path: ':apt-lib')
+    compile project(path: ':mylibrary')
+    compile project(path: ':mylibrary')
 }

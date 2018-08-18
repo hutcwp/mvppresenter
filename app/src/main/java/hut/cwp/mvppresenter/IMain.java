@@ -1,6 +1,6 @@
 package hut.cwp.mvppresenter;
 
-import mvp.MvpView;
+import hut.cwp.mylibrary.mvp.MvpView;
 
 /**
  * Created by hutcwp on 2018/8/17 23:44

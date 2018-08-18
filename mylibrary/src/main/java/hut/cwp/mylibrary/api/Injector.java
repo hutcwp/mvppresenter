@@ -1,4 +1,4 @@
-package api;
+package hut.cwp.mylibrary.api;
 
 import android.app.Activity;
 

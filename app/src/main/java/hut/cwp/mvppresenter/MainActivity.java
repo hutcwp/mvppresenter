@@ -9,9 +9,8 @@ import com.example.apt_lib.annotation.BindView;
 import com.example.apt_lib.annotation.InitAttrConfig;
 import com.example.apt_lib.annotation.InitAttrConfigs;
 
-import mvp.BindPresenter;
-import mvp.MvpActivity;
-
+import hut.cwp.mylibrary.mvp.BindPresenter;
+import hut.cwp.mylibrary.mvp.MvpActivity;
 
 @InitAttrConfigs({
         @InitAttrConfig(component = TestFragment.class, resourceId = R.id.fragment_content)
@@ -29,7 +28,6 @@ public class MainActivity extends MvpActivity<MainPresenter, IMain> implements I
     }
 
     public void setTextView(View v){
-
         getPresenter().click();
     }
 

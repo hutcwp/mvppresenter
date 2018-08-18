@@ -1,9 +1,8 @@
 package hut.cwp.mvppresenter;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
-import mvp.MvpPresenter;
+import hut.cwp.mylibrary.mvp.MvpPresenter;
 
 /**
  * Created by hutcwp on 2018/8/17 23:44

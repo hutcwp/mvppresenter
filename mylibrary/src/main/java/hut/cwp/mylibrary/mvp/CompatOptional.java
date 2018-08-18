@@ -1,4 +1,4 @@
-package mvp;
+package hut.cwp.mylibrary.mvp;
 
 /**
  * 避免空指针，java8 optional才支持,这里自己写一个简单版本

@@ -1,4 +1,4 @@
-package mvp;
+package hut.cwp.mylibrary.mvp;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
