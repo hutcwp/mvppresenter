@@ -1,0 +1,85 @@
+apply plugin: 'java-library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+// This is the library version used when deploying the artifact
+version = "1.0.2"//这里是你的版本，当你需要上传新的版本到bintry上时，只需要修改这里的版本即可
+
+def siteUrl = 'https://github.com/hutcwp/mvppresenter.git'      // 项目的主页
+def gitUrl = 'hhttps://github.com/hutcwp/mvppresenter.git'   // Git仓库的url
+group = "hutcwp"                                   // Maven Group ID for the artifact，一般填你唯一的包名
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name 'mvppresenter-annotations'
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'you id'     //填写的一些基本信息（也可以不填）
+                        name 'hutcwp'
+                        email 'hutcwp@foxmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn:classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn:javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        userOrg ="jfrogcwp"//这个地方一定要填，一定要填 ！！（这里需要修改你申请账号是的组织id）
+        repo = "maven"//发布到bintray上的仓库名
+        name = "MvpPresneter-Annotations"//发布到bintray上的包名
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
+javadoc { //jav doc采用utf-8编码否则会报“GBK的不可映射字符”错误
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+    }
+}

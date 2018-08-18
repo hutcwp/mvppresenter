@@ -5,14 +5,14 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../gradle-4.4" />
+        <option name="gradleHome" value="F:/gradle-4.4" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/apt-compile" />
-            <option value="$PROJECT_DIR$/apt-lib" />
-            <option value="$PROJECT_DIR$/mylibrary" />
+            <option value="$PROJECT_DIR$/mvppresenter" />
+            <option value="$PROJECT_DIR$/mvppresenter-annotations" />
+            <option value="$PROJECT_DIR$/mvppresenter-compiler" />
+            <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

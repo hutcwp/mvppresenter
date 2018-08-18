@@ -1,1 +1,1 @@
-include ':app', ':mylibrary', ':apt-lib', ':apt-compile'
+include ':sample', ':mvppresenter', ':mvppresenter-annotations', ':mvppresenter-compiler'
