@@ -5,7 +5,7 @@
 2. 内置了MvpActivity，MvpFragment和MvpView等基础类型。
 3. 通过@InitAttrConfigs和@InitAttrConfig动态加载定义好的Fragment。
 
-###Jcenter地址：
+### Jcenter地址：
 ```
     compile 'hutcwp:mvppresenter:1.0.7'
     annotationProcessor 'hutcwp:mvppresenter-compiler:1.0.7'
@@ -93,4 +93,5 @@ public class MainActivity extends MvpActivity<MainPresenter, IMain> implements I
 
 
 ----- -分割线 -------
- 具体可以参考Sample中的例子。
+
+ 具体可以参考（TestJcenter）https://github.com/hutcwp/TestJcenter中的例子
