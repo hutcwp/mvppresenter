@@ -64,7 +64,7 @@ public class MainPresenter extends MvpPresenter<IMain> {
 ```
 
 #### @InitAttrConfigs：（自动加载Fragment到指定布局）
-在定义的Activity(必须是继承于MvpActivity)上使用@InitAttrConfigs指需要加载进当前布局的Fragment。具体通过@InitAttrConfig指定，参数是布局id和Fragment的class类型。
+在定义的Activity(必须是继承于MvpActivity)上使用@InitAttrConfigs指定需要加载进当前布局（Activity的布局）的Fragment。具体通过@InitAttrConfig指定，参数是布局id（activity的布局中指定的容器id）和Fragment的class类型。
 使用如下：
 ```
 @InitAttrConfigs({
