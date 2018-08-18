@@ -3,6 +3,7 @@ package mvp;
 import android.app.Activity;
 
 import android.os.Bundle;
+
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
@@ -23,7 +24,7 @@ public class MvpPresenter<V extends MvpView> {
 
     /**
      * 保护空指针
-     * @return
+     * @return 非空类
      */
     protected CompatOptional<V> getMvpView(){
         return CompatOptional.ofNullable(getView());
@@ -31,7 +32,8 @@ public class MvpPresenter<V extends MvpView> {
 
     /**
      * 更新activity/fragment中Bundle
-     * @param arguments
+     * @param arguments 参数
+     * return boolean 结果
      */
     public boolean setArguments(Bundle arguments){
         if(viewRef != null){
@@ -48,7 +50,7 @@ public class MvpPresenter<V extends MvpView> {
 
     /**
      * 获取activity/fragment中Bundle
-     * @return
+     * @return Bundle
      */
     public Bundle getArguments(){
         if(viewRef != null){
@@ -63,7 +65,7 @@ public class MvpPresenter<V extends MvpView> {
 
     /**
      * attach fragment/activity  指针
-     * @param view
+     * @param view view
      */
     protected void attachView(V view){
         viewRef = view;
@@ -71,6 +73,7 @@ public class MvpPresenter<V extends MvpView> {
 
     /**
      * 对应 activity/fragment onCreate
+     * @param  savedInstanceState 参数
      */
     protected void onCreate(Bundle savedInstanceState){}
 

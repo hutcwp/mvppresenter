@@ -28,7 +28,7 @@ public class MvpActivity<P extends MvpPresenter<V>, V extends MvpView> extends R
         return mPresenter;
     }
 
-    @NonNull
+
     public P getPresenter() {
         return mPresenter;
     }
@@ -37,7 +37,7 @@ public class MvpActivity<P extends MvpPresenter<V>, V extends MvpView> extends R
         mPresenter = presenter;
     }
 
-    @NonNull
+
     public V getMvpView() {
         return (V) this;
     }
@@ -104,7 +104,7 @@ public class MvpActivity<P extends MvpPresenter<V>, V extends MvpView> extends R
         return null;
     }
 
-    public void autoLoadComponent(@IdRes int resId, MvpFragment fragment) {
+    public void autoLoadComponent(int resId, MvpFragment fragment) {
 
         getSupportFragmentManager().beginTransaction()
                 .replace(resId, fragment)
