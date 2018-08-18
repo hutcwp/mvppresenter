@@ -94,4 +94,4 @@ public class MainActivity extends MvpActivity<MainPresenter, IMain> implements I
 
 ----- -分割线 -------
 
- 具体可以参考（TestJcenter）https://github.com/hutcwp/TestJcenter中的例子
+ 具体可以参考（TestJcenter）https://github.com/hutcwp/TestJcenter 中的例子
