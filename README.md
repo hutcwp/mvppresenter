@@ -7,8 +7,8 @@
 
 ### Jcenter地址：
 ```
-    compile 'hutcwp:mvppresenter:1.0.7'
-    annotationProcessor 'hutcwp:mvppresenter-compiler:1.0.7'
+    compile 'hutcwp:mvppresenter:1.0.8'
+    annotationProcessor 'hutcwp:mvppresenter-compiler:1.0.8'
 ```
 
 如果导入不成功，请在project的build.gradle中加入：
