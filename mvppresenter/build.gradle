@@ -3,6 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 //apply from: 'https://raw.githubusercontent.com/adwiv/android-fat-aar/master/fat-aar.gradle'
 //apply from: 'fat-aar.gradle'
+apply from: rootProject.file ('jcenter-push-android.gradle')
 
 android {
     compileSdkVersion 27
@@ -19,8 +20,7 @@ def rxlifecycle_version = '2.0.1'
 
 dependencies {
 
-    compile 'hutcwp:mvppresenter-annotations:1.0.2'
-
+    implementation 'hutcwp:mvppresenter-annotations:1.0.8'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:support-annotations:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -61,21 +61,18 @@ dependencies {
     }
 }
 
-version = "1.0.7"
 
-def siteUrl = 'https://github.com/hutcwp/mvppresenter.git'      // 项目的主页
-def gitUrl = 'hhttps://github.com/hutcwp/mvppresenter.git'   // Git仓库的url
-group = "hutcwp"                                   // Maven Group ID for the artifact，一般填你唯一的包名
+def siteUrl = 'https://github.com/hutcwp/mvppresenter.git'
+def gitUrl = 'hhttps://github.com/hutcwp/mvppresenter.git'
+version = "${mvppresenter_version}"
+group = "hutcwp"
 install {
     repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
         pom {
             project {
                 packaging 'aar'
-                // Add your description here
                 name 'use java annotation to create presenter'
                 url siteUrl
-                // Set your license
                 licenses {
                     license {
                         name 'The Apache Software License, Version 2.0'
@@ -84,7 +81,7 @@ install {
                 }
                 developers {
                     developer {
-                        id 'you id'     //填写的一些基本信息（也可以不填）
+                        id 'you id'
                         name 'hutcwp'
                         email 'hutcwp@foxmail.com'
                     }
@@ -100,8 +97,8 @@ install {
 }
 
 task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
 }
 
 task javadoc(type: Javadoc) {
@@ -126,15 +123,16 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        userOrg ="jfrogcwp"//这个地方一定要填，一定要填 ！！（这里需要修改你申请账号是的组织id）
-        repo = "maven"//发布到bintray上的仓库名
-        name = "MvpPresenter"  //发布到bintray上的包名
+        userOrg ="jfrogcwp"
+        repo = "maven"
+        name = "MvpPresenter"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
         publish = true
     }
 }
+
 javadoc { //jav doc采用utf-8编码否则会报“GBK的不可映射字符”错误
     options {
         encoding "UTF-8"

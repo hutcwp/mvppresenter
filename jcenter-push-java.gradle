@@ -1,33 +1,21 @@
-apply plugin: 'java-library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-dependencies {
-    implementation 'hutcwp:mvppresenter-annotations:1.0.8'
-    implementation 'com.squareup:javapoet:1.9.0'
-    implementation 'com.google.auto.service:auto-service:1.0-rc2'
-}
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
-
-
-version = "${mvppresenter_compiler}"
 
 def siteUrl = 'https://github.com/hutcwp/mvppresenter.git'
-def gitUrl = 'hhttps://github.com/hutcwp/mvppresenter.git'
+def gitUrl = 'https://github.com/hutcwp/mvppresenter.git'
+
+version = "${mvppresenter_annotations}"
+
 group = "hutcwp"
 
 install {
     repositories.mavenInstaller {
-
         pom {
             project {
-
                 packaging 'aar'
-                name 'mvppresenter-compiler'
+                name 'mvppresenter-annotations'
                 url siteUrl
-
                 licenses {
                     license {
                         name 'The Apache Software License, Version 2.0'
@@ -60,7 +48,6 @@ task javadocJar(type: Jar, dependsOn:javadoc) {
     from javadoc.destinationDir
 }
 
-
 artifacts {
     archives javadocJar
     archives sourcesJar
@@ -76,7 +63,7 @@ bintray {
     pkg {
         userOrg ="jfrogcwp"
         repo = "maven"
-        name = "MvpPresneter-Compiler"
+        name = "MvpPresneter-Annotations"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

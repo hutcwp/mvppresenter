@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 
 import com.trello.rxlifecycle2.components.support.RxFragmentActivity;
 
-import hut.cwp.api.Injector;
 import hut.cwp.util.MLog;
 
 /**

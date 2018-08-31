@@ -12,13 +12,8 @@ import static android.content.ContentValues.TAG;
 
 
 public class Injector {
-    private static final String VIEW_SUFFIX = "$$ViewInject";
-    private static final String CONTAINER_SUFFIX = "$$FragmentInject";
 
-    public static void inject(Activity activity) {
-        Inject proxyActivity = findProxyActivity(activity, VIEW_SUFFIX);
-        proxyActivity.inject(activity, activity);
-    }
+    private static final String CONTAINER_SUFFIX = "$$ComponentInject";
 
     public static void injectContainer(Activity activity) {
         Inject proxyActivity = findProxyActivity(activity, CONTAINER_SUFFIX);
@@ -40,6 +35,6 @@ public class Injector {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        throw new RuntimeException(String.format("there have a exception !!! from Inject [MvpPresenter]"));
+        throw new RuntimeException("There have a exception from Inject [MvpPresenter]");
     }
 }

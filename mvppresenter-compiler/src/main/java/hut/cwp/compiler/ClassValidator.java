@@ -7,6 +7,7 @@ import static javax.lang.model.element.Modifier.PRIVATE;
 
 /**
  * Created by hutcwp on 2018/4/19.
+ * 用来检查作用域
  */
 
 final class ClassValidator

@@ -1,6 +1,7 @@
 package hut.cwp.compiler;
 
 import hut.cwp.annotations.InitAttrConfigs;
+
 import com.google.auto.service.AutoService;
 
 import java.io.IOException;
@@ -21,22 +22,22 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
-import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
 
 @AutoService(Processor.class)
 public class ContainerProcessor extends AbstractProcessor {
 
+    private Logger logger;
     private Messager messager;
     private Elements elementUtils;
-    private Map<String, ContainerProxyInfo> mProxyMap = new HashMap<String, ContainerProxyInfo>();
+    private Map<String, ContainerProxyInfo> mProxyMap = new HashMap<>();
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-
         messager = processingEnv.getMessager();
+        logger = new Logger(messager);
         elementUtils = processingEnv.getElementUtils();
     }
 
@@ -48,42 +49,29 @@ public class ContainerProcessor extends AbstractProcessor {
     }
 
     @Override
-    public SourceVersion getSupportedSourceVersion() {
-        return SourceVersion.latestSupported();
-    }
-
-    @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        messager.printMessage(Diagnostic.Kind.NOTE, "process...");
+        logger.info("Container process...");
         mProxyMap.clear();
-        praseAnnotation(roundEnvironment);
+        parseAnnotation(roundEnvironment);
         generateCode();
         return true;
     }
 
-    private void praseAnnotation(RoundEnvironment roundEnv) {
+    private void parseAnnotation(RoundEnvironment roundEnv) {
         Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(InitAttrConfigs.class);
         for (Element element : elements) {
             TypeElement typeElement = (TypeElement) element;
-            //class name
-            String fqClassName = typeElement.getQualifiedName().toString();
-            ContainerProxyInfo proxyInfo = mProxyMap.get(fqClassName);
-            if (proxyInfo == null) {
-                proxyInfo = new ContainerProxyInfo(elementUtils, typeElement);
-                mProxyMap.put(fqClassName, proxyInfo);
-            }
-
-            proxyInfo.processingEnv = processingEnv;
-            InitAttrConfigs initAttrConfigs = typeElement.getAnnotation(InitAttrConfigs.class);
-            proxyInfo.setConfigs(Arrays.asList(initAttrConfigs.value()));
-
+            String className = typeElement.getQualifiedName().toString(); //完全限定名称
+            ContainerProxyInfo proxyInfo = new ContainerProxyInfo(elementUtils, typeElement, processingEnv);
+            mProxyMap.put(className, proxyInfo);
+            InitAttrConfigs configs = typeElement.getAnnotation(InitAttrConfigs.class);
+            proxyInfo.setConfigs(Arrays.asList(configs.value()));
         }
     }
 
     private void generateCode() {
         //统一进行文件生成
-        for (String key : mProxyMap.keySet()) {
-            ContainerProxyInfo proxyInfo = mProxyMap.get(key);
+        for (ContainerProxyInfo proxyInfo : mProxyMap.values()) {
             try {
                 JavaFileObject jfo = processingEnv.getFiler().createSourceFile(
                         proxyInfo.getProxyClassFullName(),
@@ -93,9 +81,14 @@ public class ContainerProcessor extends AbstractProcessor {
                 writer.flush();
                 writer.close();
             } catch (IOException e) {
-
+                logger.error("presenter generateCode fail!");
+                logger.error(e);
             }
         }
     }
 
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.latestSupported();
+    }
 }
