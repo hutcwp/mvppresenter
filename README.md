@@ -7,7 +7,7 @@
 
 ### Jcenter地址：
 ```
-    compile 'hutcwp:mvppresenter:1.0.8'
+    compile 'hutcwp:mvppresenter:1.0.9'
     annotationProcessor 'hutcwp:mvppresenter-compiler:1.0.8'
 ```
 
