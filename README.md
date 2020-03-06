@@ -7,8 +7,9 @@
 
 ### Jcenter地址：
 ```
-    compile 'hutcwp:mvppresenter:1.0.9'
-    annotationProcessor 'hutcwp:mvppresenter-compiler:1.0.8'
+    implementation 'hutcwp:mvppresenter-annotations:1.1'
+    implementation 'hutcwp:mvppresenter:1.1'
+    annotationProcessor 'hutcwp:mvppresenter-compiler:1.1'
 ```
 
 如果导入不成功，请在project的build.gradle中加入：
@@ -94,4 +95,4 @@ public class MainActivity extends MvpActivity<MainPresenter, IMain> implements I
 
 ----- -分割线 -------
 
- 具体可以参考（TestJcenter）https://github.com/hutcwp/TestJcenter 中的例子
+ 具体可以参考 中的例子
