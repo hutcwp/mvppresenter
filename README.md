@@ -69,7 +69,7 @@ public class MainPresenter extends MvpPresenter<IMain> {
 使用如下：
 ```
 @InitAttrConfigs({
-        //@InitAttrConfig(component = 具体的Fragment类, resourceId = 加载到的布局容器id)
+        //@InitAttrConfig(component = 具体的Fragment类, resourceId = 加载到的布局容器id),如果是library中使用请用R2.id.fragment_content
         @InitAttrConfig(component = TestFragment.class, resourceId = R.id.fragment_content)
         @InitAttrConfig(component = TestFragment2.class, resourceId = R.id.fragment_content2)
 })
