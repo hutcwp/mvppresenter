@@ -3,7 +3,9 @@ package hut.cwp.compiler;
 import hut.cwp.annotations.InitAttrConfig;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.TypeElement;
@@ -11,7 +13,6 @@ import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
-
 
 public class ContainerProxyInfo implements IProxyInfo {
 
@@ -22,7 +23,7 @@ public class ContainerProxyInfo implements IProxyInfo {
     private TypeElement typeElement;
     private ProcessingEnvironment processingEnv;
     private List<InitAttrConfig> configs = new ArrayList<>();
-
+    private Map<String, Id> componts = new HashMap<>();
 
     public ContainerProxyInfo(Elements elementUtils, TypeElement classElement, ProcessingEnvironment processingEnv) {
         this.typeElement = classElement;
@@ -34,7 +35,7 @@ public class ContainerProxyInfo implements IProxyInfo {
 
     @Override
     public String getProxyClassFullName() {
-        return packageName+"."+proxyClassName;
+        return packageName + "." + proxyClassName;
     }
 
     @Override
@@ -50,7 +51,8 @@ public class ContainerProxyInfo implements IProxyInfo {
         builder.append("import hut.cwp.api.Inject;\n"); //这个地方怎样写好呢？
         builder.append("import " + packageName + "." + className + ";\n");
         builder.append('\n');
-        builder.append("public class ").append(proxyClassName).append(" implements " + "Inject" + "<").append(className).append(">").append(" {\n");
+        builder.append("public class ").append(proxyClassName).append(" implements " + "Inject" + "<").append(className)
+                .append(">").append(" {\n");
         generateMethods(builder);
         builder.append('\n');
         builder.append("}\n");
@@ -66,18 +68,28 @@ public class ContainerProxyInfo implements IProxyInfo {
     }
 
     private void generateComponent(StringBuilder builder) {
-        for (InitAttrConfig config : configs) {
-            try {
-                config.component();
-            } catch (MirroredTypeException e) {
-                TypeMirror typeMirror = e.getTypeMirror();
-                /**
-                 * 通过这个方法来获取具体实现类型！！！
-                 */
-                Types typeUtils = processingEnv.getTypeUtils();
-                TypeElement classTypeElement = (TypeElement) typeUtils.asElement(typeMirror);
-                builder.append("     host.autoLoadComponent( +" + config.resourceId() + ", new " + classTypeElement.getQualifiedName() + "() );\n");
-            }
+        // for (InitAttrConfig config : configs) {
+        //     try {
+        //         config.component();
+        //     } catch (MirroredTypeException e) {
+        //         TypeMirror typeMirror = e.getTypeMirror();
+        //         /**
+        //          * 通过这个方法来获取具体实现类型！！！
+        //          */
+        //         Types typeUtils = processingEnv.getTypeUtils();
+        //         TypeElement classTypeElement = (TypeElement) typeUtils.asElement(typeMirror);
+        //         builder.append("     host.autoLoadComponent( +" + config.resourceId() + ", new " +
+        //                 classTypeElement.getQualifiedName() + "() );\n");
+        //     }
+        // }
+
+        for (Map.Entry<String, Id> component : componts.entrySet()) {
+            Id id = component.getValue();
+            String name = component.getKey();
+
+            builder.append("     host.autoLoadComponent( +" + id.code + ", new " +
+                    name + "() );\n");
+
         }
     }
 
@@ -85,4 +97,11 @@ public class ContainerProxyInfo implements IProxyInfo {
         this.configs = configs;
     }
 
+    public void setComponts(Map<String, Id> componts) {
+        this.componts = componts;
+    }
+
+    public Map<String, Id> getComponts() {
+        return componts;
+    }
 }
