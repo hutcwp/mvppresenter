@@ -10,7 +10,7 @@ import hut.cwp.annotations.InitAttrConfigs;
 import hut.cwp.api.Injector;
 import hut.cwp.mvp.BindPresenter;
 import hut.cwp.mvp.MvpActivity;
-import me.hutcwp.liba.LibAMainActivity;
+// import me.hutcwp.liba.LibAMainActivity;
 
 @InitAttrConfigs({
         @InitAttrConfig(component = TestFragment.class, resourceId = R.id.fragment_content)
@@ -32,7 +32,7 @@ public class MainActivity extends MvpActivity<MainPresenter, IMain> implements I
     @Override
     public void changeText() {
         Toast.makeText(this, "hahah", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, LibAMainActivity.class));
+        // startActivity(new Intent(this, LibAMainActivity.class));
     }
 
 }

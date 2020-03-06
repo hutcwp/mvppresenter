@@ -25,15 +25,16 @@ def rxlifecycle_version = '2.0.1'
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
-    implementation project(path: ':mvppresenter-annotations')
-    implementation project(path: ':mvppresenter')
-    annotationProcessor project(':mvppresenter-compiler')
+//    implementation project(path: ':mvppresenter-annotations')
+//    implementation project(path: ':mvppresenter')
+//    annotationProcessor project(':mvppresenter-compiler')
 
-    implementation project(path: ':liba')
+//    implementation project(path: ':liba')
 
 
-//    implementation 'hutcwp:mvppresenter:1.0.7'
-//    annotationProcessor 'hutcwp:mvppresenter-compiler:1.0.7'
+    implementation 'hutcwp:mvppresenter-annotations:1.1'
+    implementation 'hutcwp:mvppresenter:1.1'
+    annotationProcessor 'hutcwp:mvppresenter-compiler:1.1'
 
 
     implementation("io.reactivex.rxjava2:rxjava:${rxjava_version}") {

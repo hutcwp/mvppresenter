@@ -6,7 +6,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    implementation 'hutcwp:mvppresenter-annotations:1.0.8'
+    implementation 'hutcwp:mvppresenter-annotations:1.1'
     implementation 'com.squareup:javapoet:1.11.1'
     implementation 'com.google.auto.service:auto-service:1.0-rc6'
     annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
