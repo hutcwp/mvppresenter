@@ -1,10 +1,10 @@
 package hut.cwp.mvp;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
+import androidx.annotation.NonNull;
 import hut.cwp.util.MLog;
 
 

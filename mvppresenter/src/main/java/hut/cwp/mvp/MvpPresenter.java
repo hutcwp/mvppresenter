@@ -2,9 +2,9 @@ package hut.cwp.mvp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * base presenter for referring to the attach view

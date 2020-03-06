@@ -1,15 +1,16 @@
 package hut.cwp.mvppresenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 
 import hut.cwp.annotations.InitAttrConfig;
 import hut.cwp.annotations.InitAttrConfigs;
 import hut.cwp.api.Injector;
 import hut.cwp.mvp.BindPresenter;
 import hut.cwp.mvp.MvpActivity;
+import me.hutcwp.liba.LibAMainActivity;
 
 @InitAttrConfigs({
         @InitAttrConfig(component = TestFragment.class, resourceId = R.id.fragment_content)
@@ -24,13 +25,14 @@ public class MainActivity extends MvpActivity<MainPresenter, IMain> implements I
         Injector.injectContainer(this);
     }
 
-    public void setTextView(View v){
+    public void setTextView(View v) {
         getPresenter().click();
     }
 
     @Override
     public void changeText() {
-        Toast.makeText(this,"hahah",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "hahah", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, LibAMainActivity.class));
     }
 
 }

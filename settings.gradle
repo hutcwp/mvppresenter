@@ -1,1 +1,1 @@
-include ':sample', ':mvppresenter', ':mvppresenter-annotations', ':mvppresenter-compiler'
+include ':sample', ':mvppresenter', ':mvppresenter-annotations', ':mvppresenter-compiler', ':liba'

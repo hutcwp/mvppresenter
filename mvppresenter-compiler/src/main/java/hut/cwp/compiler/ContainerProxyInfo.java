@@ -68,26 +68,11 @@ public class ContainerProxyInfo implements IProxyInfo {
     }
 
     private void generateComponent(StringBuilder builder) {
-        // for (InitAttrConfig config : configs) {
-        //     try {
-        //         config.component();
-        //     } catch (MirroredTypeException e) {
-        //         TypeMirror typeMirror = e.getTypeMirror();
-        //         /**
-        //          * 通过这个方法来获取具体实现类型！！！
-        //          */
-        //         Types typeUtils = processingEnv.getTypeUtils();
-        //         TypeElement classTypeElement = (TypeElement) typeUtils.asElement(typeMirror);
-        //         builder.append("     host.autoLoadComponent( +" + config.resourceId() + ", new " +
-        //                 classTypeElement.getQualifiedName() + "() );\n");
-        //     }
-        // }
-
         for (Map.Entry<String, Id> component : componts.entrySet()) {
             Id id = component.getValue();
             String name = component.getKey();
 
-            builder.append("     host.autoLoadComponent( +" + id.code + ", new " +
+            builder.append("     host.autoLoadComponent(" + id.code + ", new " +
                     name + "() );\n");
 
         }
