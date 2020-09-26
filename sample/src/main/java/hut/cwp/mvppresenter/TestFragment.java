@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import hut.cwp.mvp.BindPresenter;
-import hut.cwp.mvp.MvpFragment;
+import hut.cwp.annotations.mvp.DelegateBind;
+import hut.cwp.core.MvpFragment;
 
-@BindPresenter(presenter = TestPresenter.class)
+@DelegateBind(presenter = TestPresenter.class)
 public class TestFragment extends MvpFragment<TestPresenter, ITest> {
 
     public TestFragment() {

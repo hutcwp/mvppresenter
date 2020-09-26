@@ -1,8 +1,7 @@
-package hut.cwp.mvp;
+package hut.cwp.util;
 
 /**
  * 避免空指针，java8 optional才支持,这里自己写一个简单版本
- * @author huangfan(kael)
  */
 
 public class CompatOptional<T> {

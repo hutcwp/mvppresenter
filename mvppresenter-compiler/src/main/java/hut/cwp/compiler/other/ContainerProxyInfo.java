@@ -1,4 +1,4 @@
-package hut.cwp.compiler;
+package hut.cwp.compiler.other;
 
 import hut.cwp.annotations.InitAttrConfig;
 

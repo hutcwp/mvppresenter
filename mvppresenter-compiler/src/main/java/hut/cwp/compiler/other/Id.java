@@ -1,4 +1,4 @@
-package hut.cwp.compiler;
+package hut.cwp.compiler.other;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
