@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -27,7 +29,7 @@ dependencies {
 
     implementation project(path: ':mvppresenter-annotations')
     implementation project(path: ':mvppresenter')
-    annotationProcessor project(':mvppresenter-compiler')
+    kapt project(':mvppresenter-compiler')
 
 //    implementation project(path: ':liba')
 
@@ -71,6 +73,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
+}
+repositories {
+    mavenCentral()
 }
