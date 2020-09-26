@@ -8,7 +8,7 @@ import hut.cwp.annotations.mvp.DelegateBind
 import hut.cwp.core.MvpFragment
 
 @DelegateBind(presenter = TestPresenter::class)
-class TestFragment : MvpFragment<TestPresenter?, ITest?>() {
+class TestFragment : MvpFragment<TestPresenter, ITest >() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup,
             savedInstanceState: Bundle

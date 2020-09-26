@@ -19,7 +19,7 @@ class MainActivity : MvpActivity<MainPresenter, IMain>(), IMain {
     }
 
     fun setTextView(v: View?) {
-        presenter.click()
+        getPresenter()?.click()
     }
 
     override fun changeText() {
