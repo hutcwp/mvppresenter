@@ -35,9 +35,8 @@ class MvpInnerDelegate<P : MvpPresenter<V>, V : MvpView>(
         for (ii in mMvpInnerDelegateCallback.javaClass.interfaces) {
             //if (ii.isAssignableFrom(MvpView.class)) {
             if (MvpView::class.java.isAssignableFrom(ii)) {
-                mMvpInnerDelegateCallback.getPresenter()!!.attachView(
-                        mMvpInnerDelegateCallback.getMvpView())
-                mMvpInnerDelegateCallback.getPresenter()!!.onCreate(savedInstanceState)
+                mMvpInnerDelegateCallback.getPresenter()?.attachView(mMvpInnerDelegateCallback.getMvpView())
+                mMvpInnerDelegateCallback.getPresenter()?.onCreate(savedInstanceState)
                 break
             }
         }
@@ -48,9 +47,7 @@ class MvpInnerDelegate<P : MvpPresenter<V>, V : MvpView>(
      * 解除MvpView[MvpActivity]/[MvpFragment] 对 [MvpPresenter]中的数据绑定
      */
     fun detach() {
-        if (mPresenterBinder != null) {
-            mPresenterBinder!!.unbindPresenter()
-        }
+        mPresenterBinder?.unbindPresenter()
         mPresenterBinder = null
     }
 }

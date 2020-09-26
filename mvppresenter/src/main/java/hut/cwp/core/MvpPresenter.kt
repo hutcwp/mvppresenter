@@ -1,21 +1,13 @@
 package hut.cwp.core
 
 import android.os.Bundle
-import hut.cwp.util.CompatOptional
 
 /**
  * base presenter for referring to the attach view
  */
-open class MvpPresenter<V : MvpView?> {
+open class MvpPresenter<V : MvpView> {
     protected var view: V? = null
         private set
-
-    /**
-     * 保护空指针
-     * @return
-     */
-    protected val mvpView: CompatOptional<V>
-        protected get() = CompatOptional.ofNullable(view)
 
     /**
      * attach fragment/activity  指针
